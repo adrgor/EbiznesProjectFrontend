@@ -15,4 +15,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag adrgor/ebiznesfrontend:latest
     - name: Publish image to docker hub
-      run: docker login -u ${{ secrets.DOCKER_USERNAME}} -p ${{ secrets.DOCKER_PASSWORD }} && docker push adrgor/ebiznesfrontend:latest
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p "${{ secrets.DOCKER_PASSWORD }}" && docker push adrgor/ebiznesfrontend:latest
