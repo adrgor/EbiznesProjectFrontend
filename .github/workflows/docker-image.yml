@@ -1,5 +1,8 @@
 name: Docker Image CI
 
+env:
+  AZURE_WEBAPP_NAME: ebiznesfrontend
+
 on:
   push:
     branches: [ "master" ]
@@ -16,3 +19,9 @@ jobs:
       run: docker build . --file Dockerfile --tag adrgor/ebiznesfrontend:latest
     - name: Publish image to docker hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p "${{ secrets.DOCKER_PASSWORD }}" && docker push adrgor/ebiznesfrontend:latest
+    - name: Deploy to azure service app
+      uses: azure/webapps-deploy@v2
+      with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: 'adrgor/ebiznesfrontend:latest'
