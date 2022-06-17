@@ -5,6 +5,7 @@ import Basket from './components/Basket';
 import { Checkout } from './components/Checkout';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import Login from './components/Login';
+import StripeWrapper from './StripeWrapper';
 
 export const BasketContext = createContext()
 export const SetBasketContext = createContext()
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/basket" element={<Basket/>} />
                 <Route path="/checkout" element={<Checkout/>}/>
                 <Route path="/login" element={<Login/>}/>
+                {/* <Route path="/checkout" element={<StripeWrapper/>} /> */}
                 <Route path="*" element={<div style={{maring: "auto", fontSize: "3em", color: "red", width: "100%", textAlign: "center"}}>404</div>}/>
                 
               </Routes>

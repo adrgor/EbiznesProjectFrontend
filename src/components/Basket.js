@@ -8,7 +8,7 @@ const Basket = () => {
     const setBasket = useContext(SetBasketContext)
 
     const sendBasketState = () => {
-        fetch('https://ebiznesbackend.azurewebsites.net/api/basket', {
+        fetch('https://ebiznesbackend.azurewebsites.net/api/basket/', {
             mode: 'cors',
             method: "POST",
             headers: {

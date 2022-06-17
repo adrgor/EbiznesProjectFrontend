@@ -1,13 +1,16 @@
 import CustomerInfo from './CustomerInfo'
 import CheckoutSummary from './CheckoutSummary'
-import PaymentDetails from './PaymentDetails'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import StripeWrapper from '../StripeWrapper'
+import { BasketContext } from '../App'
 
 export const Checkout = () => {
     const [isCardView, setIsCardView] = useState(true)
     const changeView = () => {
         setIsCardView((prevValue) => !prevValue)
     }
+
+    const basket = useContext(BasketContext)
 
     const [email, setEmail] = useState("")
     const [firstName, setFirstName] = useState("")
@@ -19,11 +22,6 @@ export const Checkout = () => {
     const [postalCode, setPostalCode] = useState("")
     const [country, setCountry] = useState("")
     const [phone, setPhone] = useState("")
-    const [cardNumber, setCardNumber] = useState("")
-    const [expDate, setExpDate] = useState("")
-    const [nameOnCard, setNameOnCard] = useState("")
-    const [cvv, setCvv] = useState("")
-    
 
     return (
         <div className="checkout-page">
@@ -31,10 +29,9 @@ export const Checkout = () => {
                             setBuildingNumber={setBuildingNumber} buildingNumber={buildingNumber} setApartmentNumber={setApartmentNumber} apartmentNumber={apartmentNumber} setCity={setCity} city={city} setPostalCode={setPostalCode} 
                             postalCode={postalCode} setCountry={setCountry} country={country} setPhone={setPhone} phone={phone}/>}
 
-            {!isCardView && <PaymentDetails setCardNumber={setCardNumber} cardNumber={cardNumber} setExpDate={setExpDate} expDate={expDate} setNameOnCard={setNameOnCard} nameOnCard={nameOnCard} setCvv={setCvv} cvv={cvv}/>}
+            {!isCardView && <StripeWrapper addressDetails={{email, firstName, lastName, street, buildingNumber, apartmentNumber, city, postalCode, country, phone}} basket={basket}/>}
 
-            <CheckoutSummary changeView={changeView} isCardView={isCardView} email={email} firstName={firstName} lastName={lastName} street={street} buildingNumber={buildingNumber} apartmentNumber={apartmentNumber} postalCode={postalCode} country={country} city={city} phone={phone} cardNumber={cardNumber} 
-                             expDate={expDate} nameOnCard={nameOnCard} cvv={cvv}/>
+            <CheckoutSummary changeView={changeView} isCardView={isCardView}/>
         </div>
     )
 }

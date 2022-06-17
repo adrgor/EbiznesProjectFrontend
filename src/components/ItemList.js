@@ -38,9 +38,11 @@ const ItemList = () => {
         if(localStorage.getItem("JWT_TOKEN") != undefined) {
           const authHeader = new Headers();
           authHeader.append("Authorization", `Bearer ${localStorage.getItem("JWT_TOKEN")}`)
-          const res = await fetch('https://ebiznesbackend.azurewebsites.net/api/products', {
+          const res = await fetch('https://ebiznesbackend.azurewebsites.net/api/products/', {
           mode: 'cors',
           headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
             "Authorization": `Bearer ${localStorage.getItem("JWT_TOKEN")}`
           }
           })
