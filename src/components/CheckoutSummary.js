@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import {useNavigate} from 'react-router-dom'
-import { BasketContext, SetBasketContext } from '../App'
+import { BasketContext } from '../App'
 
 
 const CheckoutSummary = (props) => {
@@ -26,9 +25,7 @@ const CheckoutSummary = (props) => {
         color: "#000e29",
     }
 
-    const navigate = useNavigate()
     const basket = useContext(BasketContext)
-    const setBasket = useContext(SetBasketContext)
 
     return (
         <div >

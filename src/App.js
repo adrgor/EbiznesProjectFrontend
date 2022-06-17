@@ -1,11 +1,9 @@
-import './App.css';
 import ItemList from './components/ItemList';
 import React, { useState, createContext, useEffect } from 'react';
 import Basket from './components/Basket';
 import { Checkout } from './components/Checkout';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import Login from './components/Login';
-import StripeWrapper from './StripeWrapper';
 
 export const BasketContext = createContext()
 export const SetBasketContext = createContext()
