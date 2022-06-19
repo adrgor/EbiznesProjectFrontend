@@ -42,7 +42,7 @@ export const Checkout = () => {
         } else if(!areEmailsTheSame()) {
             alert("Emails are not the same")
         } else if(!isEmailValid()) {
-            alert("Given email is doens't have valid format")
+            alert("Given email doens't have valid format")
         } else if(isNaN(buildingNumber)) {
             alert("Unexpected data in number only filed(s)")
         } else  {
