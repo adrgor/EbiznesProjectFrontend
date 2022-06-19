@@ -11,12 +11,16 @@ export const SetBasketContext = createContext()
 function App() {
 
   const [basket, setBasket] = useState([])
+  const [loginText, setLoginText] = useState("Login")
 
   useEffect(() => {
     const url = window.location.href
     if(url.includes("token=")) {
       const token = url.substring(url.indexOf("token=") + 6)
       localStorage.setItem("JWT_TOKEN", token)
+    }
+    if(localStorage.getItem('JWT_TOKEN')) {
+      setLoginText("Logout")
     }
   }, []);
 
@@ -36,7 +40,7 @@ function App() {
                 <div>Categories</div>
                 <div>Contact</div>
                 <Link to="/basket"> <div>Basket</div> </Link>
-                {localStorage.getItem("JWT_TOKEN") != undefined ? <a href="/" onClick={logout}>Logout</a> : <Link to="/login"> <div>Login</div> </Link>}
+                {localStorage.getItem("JWT_TOKEN") != undefined ? <a href="/" onClick={logout}>{loginText}</a> : <Link to="/login"> <div>{loginText}</div> </Link>}
               </div>
               
               <Routes>
@@ -44,7 +48,6 @@ function App() {
                 <Route path="/basket" element={<Basket/>} />
                 <Route path="/checkout" element={<Checkout/>}/>
                 <Route path="/login" element={<Login/>}/>
-                {/* <Route path="/checkout" element={<StripeWrapper/>} /> */}
                 <Route path="*" element={<div style={{maring: "auto", fontSize: "3em", color: "red", width: "100%", textAlign: "center"}}>404</div>}/>
                 
               </Routes>

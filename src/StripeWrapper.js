@@ -13,13 +13,12 @@ export default function StripeWrapper(props) {
   useEffect(() => {
     console.log(props.basket)
     console.log(props.addressDetails)
-    fetch("http://localhost:8080/create-payment-intent", {
+    fetch("https://ebiznesbackend.azurewebsites.net/create-payment-intent", {
       method: "POST",
       headers: { 
             "Content-Type": "application/json",
             "Authorization": `Bearer ${localStorage.getItem("JWT_TOKEN")}` 
         },
-    //   body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
       body: JSON.stringify({basket: props.basket, addressDetails: props.addressDetails})
     })
       .then((res) => res.json())

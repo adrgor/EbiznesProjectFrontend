@@ -34,7 +34,7 @@ const Basket = () => {
             {basket.length > 0 ? basket.map((item, index) => (<BasketItem id={index} name={item.name} price={item.price} removeItemFromBasket={(id) => removeItemFromBasket(id)}/>)) :
             <div style={{margin: "auto", textAlign: "center"}}>No products in basket</div>}
             <div className="summary">
-                Summary: ${basket.map(item => item.price).reduce((partialSum, a) => partialSum + a, 0)}
+                Summary: ${basket.map(item => item.price).reduce((partialSum, a) => partialSum + a, 0).toFixed(2)}
             </div>
             {basket.length > 0 && <Link to="/checkout"> <div className="checkout" onClick={sendBasketState}>Go to checkout ></div></Link>}
         </div>

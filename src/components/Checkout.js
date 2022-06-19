@@ -6,13 +6,11 @@ import { BasketContext } from '../App'
 
 export const Checkout = () => {
     const [isCardView, setIsCardView] = useState(true)
-    const changeView = () => {
-        setIsCardView((prevValue) => !prevValue)
-    }
 
     const basket = useContext(BasketContext)
 
     const [email, setEmail] = useState("")
+    const [repeatEmail, setRepeatEmail] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [street, setStreet] = useState("")
@@ -23,9 +21,38 @@ export const Checkout = () => {
     const [country, setCountry] = useState("")
     const [phone, setPhone] = useState("")
 
+    const isDataComplete = () => {
+        return !(email == "" || repeatEmail == "" || firstName == "" || lastName == "" || street == "" || buildingNumber == "" || city == "" || postalCode == "" || country == "" || phone == "" )
+    }
+
+    const areEmailsTheSame = () => {
+        return email == repeatEmail
+    }
+
+    const isEmailValid = () => {
+        return String(email)
+            .toLowerCase()
+            .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+    }
+
+    const changeView = () => {
+        if(!isDataComplete()) {
+            alert("Fill all the necessary fields!")            
+        } else if(!areEmailsTheSame()) {
+            alert("Emails are not the same")
+        } else if(!isEmailValid()) {
+            alert("Given email is doens't have valid format")
+        } else if(isNaN(buildingNumber)) {
+            alert("Unexpected data in number only filed(s)")
+        } else  {
+            setIsCardView((prevValue) => !prevValue)
+        }
+    }
+
     return (
         <div className="checkout-page">
-            {isCardView && <CustomerInfo setEmail={setEmail} email={email} setFirstName={setFirstName} firstName={firstName} setLastName={setLastName} lastName={lastName} setStreet={setStreet} street={street} 
+            {isCardView && <CustomerInfo setEmail={setEmail} email={email} setRepeatEmail = {setRepeatEmail} repeatEmail={repeatEmail} setFirstName={setFirstName} firstName={firstName} setLastName={setLastName} lastName={lastName} setStreet={setStreet} street={street} 
                             setBuildingNumber={setBuildingNumber} buildingNumber={buildingNumber} setApartmentNumber={setApartmentNumber} apartmentNumber={apartmentNumber} setCity={setCity} city={city} setPostalCode={setPostalCode} 
                             postalCode={postalCode} setCountry={setCountry} country={country} setPhone={setPhone} phone={phone}/>}
 
