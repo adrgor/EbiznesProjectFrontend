@@ -29,7 +29,7 @@ const CheckoutSummary = (props) => {
 
     return (
         <div >
-            <div style={summaryStye}>Total price: ${basket.map(item => item.price).reduce((partialSum, a) => partialSum + a, 0)}</div>
+            <div style={summaryStye}>Total price: ${basket.map(item => item.price).reduce((partialSum, a) => partialSum + a, 0).toFixed(2)}</div>
             {
                 !props.isCardView ?
                 <>
