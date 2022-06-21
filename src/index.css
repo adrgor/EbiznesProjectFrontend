@@ -144,3 +144,18 @@ a:visited {
   background-color: #000e29;
   color: white;
 }
+
+.btn {
+  width: "fit-content";
+  text-align: "center";
+  margin-top: "2em";
+  font-size: "2em";
+  padding: "0.5em";
+  padding-left: "1em";
+  padding-right: "1em";
+  background-color: "#000e29";
+  border-radius: "50000px";
+  color: "#efefef";
+  min-width: "5em";
+  margin: "auto"
+}

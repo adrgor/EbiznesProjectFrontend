@@ -1,9 +1,13 @@
 import ItemList from './components/ItemList';
+import Admin from './components/Admin';
 import React, { useState, createContext, useEffect } from 'react';
 import Basket from './components/Basket';
 import { Checkout } from './components/Checkout';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import Login from './components/Login';
+import AddItem from './components/AddItem';
+import EditableItems from './components/EditableItems';
+import EditItems from './components/EditItem';
 
 export const BasketContext = createContext()
 export const SetBasketContext = createContext()
@@ -48,6 +52,9 @@ function App() {
                 <Route path="/basket" element={<Basket/>} />
                 <Route path="/checkout" element={<Checkout/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/admin" element={<Admin/>}/>
+                <Route path="/admin/add-item" element={<AddItem/>}/>
+                <Route path="/admin/edit-item/:id" element={<EditItems/>}/>
                 <Route path="*" element={<div style={{maring: "auto", fontSize: "3em", color: "red", width: "100%", textAlign: "center"}}>404</div>}/>
                 
               </Routes>
