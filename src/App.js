@@ -6,7 +6,6 @@ import { Checkout } from './components/Checkout';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import Login from './components/Login';
 import AddItem from './components/AddItem';
-import EditableItems from './components/EditableItems';
 import EditItems from './components/EditItem';
 
 export const BasketContext = createContext()

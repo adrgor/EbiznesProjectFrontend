@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import placeholderImg from '../images/placeholder.png'
 
 const ItemEditable = (props) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-export default function EditItem(props) {
+export default function EditItem() {
     let [name, setName] = useState("")
     let [category, setCategory] = useState("")
     let [price, setPrice] = useState()
